@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Navbar</title>
+</head>
+<body>
+<!-- Navbar Start -->
+<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+    <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <h2 class="m-0 text-primary"><i class="fa fa-car me-3"></i>Smart garage</h2>
+    </a>
+
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="index.html" class="nav-item nav-link active" th:href="@{/}">Home</a>
+
+            <a href="#" th:href="@{/car-maintenances}" th:text="#{navigation.all-car-maintenances}"
+               class="nav-item nav-link">Services</a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto p-4 p-lg-0">
+                    <div class="nav-item dropdown">
+                        <a th:if="${isAuthenticated}" href="#" class="nav-link dropdown-toggle"
+                           data-bs-toggle="dropdown">Pages</a>
+                        <!--                        <h2 th:text="#{home.welcome} + ' ' + ${session.currentUser}" th:if="${isAuthenticated}">Welcome (design)!</h2>-->
+                        <div class="dropdown-menu fade-up m-0">
+                            <a href="#" th:href="@{/visits/my-visits}" th:text="#{navigation.my-visits}"
+                               class="dropdown-item">My visits</a>
+                            <a href="#" th:href="@{/orders/my-orders}" th:text="#{navigation.my-orders}"
+                               class="dropdown-item">My orders</a>
+                            <a href="#" th:href="@{/discounts/my-discounts}" th:text="#{navigation.my-discounts}"
+                               class="dropdown-item">My discounts</a>
+                            <a href="#" th:href="@{/payments/my-payments}" th:text="#{navigation.my-payments}"
+                               class="dropdown-item">My payments</a>
+                            <a href="#" th:href="@{/vehicles/my-vehicles}" th:text="#{vehicles.label.my-vehicles}"
+                               class="dropdown-item">My vehicles</a>
+                            <a href="#" th:href="@{/auth/info}" th:text="#{user.navigation.user-info}"
+                               class="dropdown-item">User Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div th:if="${isAuthenticated && #strings.toString(session.admin) == 'admin'}" class="nav-item dropdown">
+                <a th:href="@{auth/admin}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin Panel</a>
+                <div class="dropdown-menu fade-up m-0">
+                    <a href="#" th:href="@{/visits}" th:text="#{navigation.all-visits}" class="dropdown-item">Visits</a>
+                    <a href="#" th:href="@{/orders}" th:text="#{navigation.all-orders}" class="dropdown-item">Orders</a>
+                    <a href="#" th:href="@{/payments}" th:text="#{navigation.all-payments}" class="dropdown-item">Payments</a>
+
+                    <a href="#" th:href="@{/prices}" th:text="#{navigation.all-prices}" class="dropdown-item">Prices</a>
+                    <a href="#" th:href="@{/discounts}" th:text="#{navigation.all-discounts}" class="dropdown-item">Discounts</a>
+
+                    <a href="#" th:href="@{/brands}" th:text="#{navigation.all-brands}" class="dropdown-item">Brands</a>
+                    <a href="#" th:href="@{/car-models}" th:text="#{navigation.all-carModels}" class="dropdown-item">Car
+                        models</a>
+                    <a href="#" th:href="@{/vehicles}" th:text="#{navigation.all-vehicles}" class="dropdown-item">Vehicles</a>
+                    <a href="#" th:href="@{/car-maintenances}" th:text="#{navigation.all-car-maintenances}"
+                       class="dropdown-item">Car maintenances</a>
+                    <a href="#" th:href="@{/auth/register}" th:text="#{navigation.register}" class="dropdown-item">User
+                        registration</a>
+
+                    <a href="#" th:href="@{/users}" th:text="#{navigation.all-users}" class="dropdown-item">Users</a>
+                    <a href="#" th:href="@{/roles}" th:text="#{navigation.all-roles}" class="dropdown-item">Roles</a>
+                      </div>
+            </div>
+
+            <a th:unless="${isAuthenticated}" th:href="@{/auth/login}" href="#"
+               class="nav-item nav-link">Login</a>
+            <a th:if="${isAuthenticated}" th:href="@{/auth/logout}" href="#" class="nav-item nav-link">Logout</a>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
+<!-- Navbar End ---------------------------------->
+
+

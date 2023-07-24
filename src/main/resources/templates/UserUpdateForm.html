@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:import="org.thymeleaf.util.StringUtils"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Updated User</title>
+  <link href="../static/Styles.css" th:href="@{/Styles.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<form th:fragment="user-update-form" action="#" th:action="@{__${requestURI}__}" th:object="${userUpdateRequest}" method="post">
+
+  <br/>
+  <br/><br/>
+  <label th:text="#{user.label.first-name}">First Name</label>
+  <input type="text" th:field="*{firstName}"/>
+  <label class="error" th:errors="*{firstName}">First Name error placeholder</label>
+  <br/>
+  <br/><br/>
+  <label th:text="#{user.label.last-name}">Last Name</label>
+  <input type="text" th:field="*{lastName}"/>
+  <label class="error" th:errors="*{lastName}">Last Name error placeholder</label>
+  <br/>
+  <br/><br/>
+
+  <label th:text="#{user.label.email}">Email</label>
+  <input type="text" th:field="*{email}"/>
+  <label class="error" th:errors="*{email}">Email error placeholder</label>
+
+  <br/>
+  <br/><br/>
+  <label th:text="#{user.label.phoneNumber}">Phone number</label>
+  <input type="text" th:field="*{phoneNumber}"/>
+  <label class="error" th:errors="*{phoneNumber}">Email error placeholder</label>
+
+  <br/>
+  <br/><br/>
+
+  <label th:text="#{user.label.password}">Password</label>
+  <input type="text" th:field="*{password}"/>
+  <label class="error" th:errors="*{password}">Password error placeholder</label>
+  <br/>
+  <br/><br/>
+  <label th:text="#{user.label.password-confirm}">Confirm Password</label>
+  <input type="text" th:field="*{checkPassword}"/>
+  <label class="error" th:errors="*{checkPassword}">Password confirm error placeholder</label>
+  <br/>
+  <br/><br/>
+
+  <div th:if="${isAuthenticated && #strings.toString(session.admin) == 'admin'}">
+    <label th:text="#{user.label.role}">Role</label>
+    <select th:field="*{roleName}">
+      <option value="">Select Role</option>
+      <option value="customer" th:selected="${#strings.toString(userUpdateRequest.roleName) == 'customer'}">customer</option>
+      <option value="admin" th:selected="${#strings.toString(userUpdateRequest.roleName) == 'admin'}">admin</option>
+    </select>
+    <br/><br/>
+    <label th:text="#{user.label.archived}">Archived</label>
+    <select th:field="*{archived}">
+      <option value="false" th:selected="${userUpdateRequest.archived == null or userUpdateRequest.archived == false}">no</option>
+      <option value="true" th:selected="${userUpdateRequest.archived == true}">yes</option>
+    </select>
+    <br/><br/>
+  </div>
+  <input type="submit" value="Save"/>
+</form>
+
+
+
+</body>
+</html>

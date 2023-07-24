@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Discount form</title>
+</head>
+<body>
+
+<form th:fragment="discount-form" action="#" th:action="@{__${requestURI}__}" th:object="${discountSaveRequest}" method="post">
+  <label th:text="#{discount.label.discountName}">Discount name</label>
+  <br/>
+  <input type="text" th:field="*{discountName}"/>
+  <label class="error" th:errors="*{discountName}">Discount name error placeholder</label>
+  <br/><br/>
+
+  <label th:text="#{discount.label.discountAmount}">Discount amount</label>
+  <br/>
+  <input type="number" th:field="*{discountAmount}"/>
+  <label class="error" th:errors="*{discountAmount}">Discount amount error placeholder</label>
+  <br/><br/>
+
+  <label th:text="#{discount.label.username}">Discount for username</label>
+  <br/>
+  <select th:field="*{username}" id="dropDownList">
+    <option value="0">select option</option>
+    <option th:each="user : ${users}" th:value="${user.username}" th:text="${user.username}"></option>
+  </select>
+  <label class="error" th:errors="*{username}">username error placeholder</label>
+  <br/><br/>
+
+  <label th:text="#{discount.label.validFrom}">Discount valid from</label>
+  <br/>
+  <input type="date" th:field="*{validFrom}"/>
+  <label class="error" th:errors="*{validFrom}">Discount valid from error placeholder</label>
+  <br/><br/>
+
+
+  <label th:text="#{discount.label.validTo}">Discount valid to</label>
+  <br/>
+  <input type="date" th:field="*{validTo}"/>
+  <label class="error" th:errors="*{validTo}">validTo error placeholder</label>
+  <br/><br/>
+
+  <input type="submit" value="Save"/>
+  <br/><br/>
+</form>
+
+</body>
+</html>

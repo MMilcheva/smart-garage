@@ -1,0 +1,66 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Car models View</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<ul>-->
+<!--    <li><h3><a href="#" th:href="@{/car-models}" th:text="#{navigation.all-carModels}">All car models</a></h3></li>-->
+<!--    <li th:if="${isAuthenticated}" ><a href="#" th:href="@{/car-models/new}" th:text="#{navigation.create-carModel}">Create a car model</a></li>-->
+<!--    <li><a href="#" th:href="@{/brands/new}" th:text="#{navigation.create-brand}">Create a brand</a></li>-->
+
+
+<!--    <li><A HREF="javascript:javascript:history.go(-2)">Back</A></li>-->
+<!--</ul>-->
+
+<!--&lt;!&ndash;<form action="#" th:action="@{/brands/__${brandId}__/car-models}" th:object="${selectedCarModels}" method="get">&ndash;&gt;-->
+<!--&lt;!&ndash;    <label th:text="#{carModel.filter.label}">Filter options</label>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <input type="text" placeholder="Car model name" th:field="*{carModelName}"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <select th:field="*{sortBy}">&ndash;&gt;-->
+<!--&lt;!&ndash;        <option value="">Sort by</option>&ndash;&gt;-->
+<!--&lt;!&ndash;        <option th:value="carModelName">Car model name</option>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;        <option th:value="isArchived">isArchived</option>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    </select>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <select th:field="*{sortOrder}">&ndash;&gt;-->
+<!--&lt;!&ndash;        <option value="">Sort order</option>&ndash;&gt;-->
+<!--&lt;!&ndash;        <option th:value="asc">Ascending</option>&ndash;&gt;-->
+<!--&lt;!&ndash;        <option th:value="desc">Descending</option>&ndash;&gt;-->
+<!--&lt;!&ndash;    </select>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <select th:field="*{archived}">&ndash;&gt;-->
+<!--&lt;!&ndash;        <option th:value="null">All</option>&ndash;&gt;-->
+<!--&lt;!&ndash;        <option th:value="1">Archived</option>&ndash;&gt;-->
+<!--&lt;!&ndash;        <option th:value="0">Active</option>&ndash;&gt;-->
+<!--&lt;!&ndash;    </select>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <input type="submit" value="Search"/>&ndash;&gt;-->
+<!--&lt;!&ndash;</form>&ndash;&gt;-->
+<!--&lt;!&ndash; Section&ndash;&gt;-->
+
+<!--<section class="py-5">-->
+<!--    <div class="container px-4 px-lg-5 mt-5">-->
+<!--        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">-->
+<!--            <div th:each="carModel : ${selectedCarModels}" class="col mb-5">-->
+<!--                <div class="card-body p-4">-->
+<!--                    <div class="text-center">-->
+<!--                        <a href="#" th:href="@{/car-models/__${carModel.getCarModelId()}__}">-->
+<!--                            <h5 class="fw-bolder" th:text="${carModel.carModelName}">Car model name</h5></a>-->
+<!--                        &lt;!&ndash;                                <h5 class="fw-bolder" th:text="${carModel.brand.brandName}">Brand name</h5>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                <h5 class="fw-bolder" th:text="${brand.isArchived()}">is arch</h5></a>&ndash;&gt;-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+
+<!--</body>-->
+<!--</html>-->

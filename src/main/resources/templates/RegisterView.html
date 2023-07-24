@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Register</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&family=Ubuntu:wght@400;500&display=swap"
+          rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet"/>
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+
+
+<body>
+
+
+<!-- Navbar Start -->
+<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+
+    <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <h2 class="m-0 text-primary"><i class="fa fa-car me-3"></i>Smart garage</h2>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="index.html" class="nav-item nav-link active" th:href="@{/}">Home</a>
+
+            <a href="#" th:href="@{/car-maintenances}" th:text="#{navigation.all-car-maintenances}"
+               class="nav-item nav-link">Services</a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto p-4 p-lg-0">
+                    <div class="nav-item dropdown">
+                        <a th:if="${isAuthenticated}" href="#" class="nav-link dropdown-toggle"
+                           data-bs-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu fade-up m-0">
+                            <a href="#" th:href="@{/visits/my-visits}" th:text="#{navigation.my-visits}"
+                               class="dropdown-item">My visits</a>
+                            <a href="#" th:href="@{/orders/my-orders}" th:text="#{navigation.my-orders}"
+                               class="dropdown-item">My orders</a>
+                            <a href="#" th:href="@{/payments/my-payments}" th:text="#{navigation.my-payments}"
+                               class="dropdown-item">My payments</a>
+                            <a href="#" th:href="@{/vehicles/my-vehicles}" th:text="#{vehicles.label.my-vehicles}"
+                               class="dropdown-item">My vehicles</a>
+                            <a href="#" th:href="@{/auth/info}" th:text="#{user.navigation.user-info}"
+                               class="dropdown-item">User Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a th:href="@{auth/admin}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin Panel</a>
+            <div class="dropdown-menu fade-up m-0">
+                <a href="#" th:href="@{/visits}" th:text="#{navigation.all-visits}" class="dropdown-item">Visits</a>
+                <a href="#" th:href="@{/orders}" th:text="#{navigation.all-orders}" class="dropdown-item">Orders</a>
+                <a href="#" th:href="@{/payments}" th:text="#{navigation.all-payments}"
+                   class="dropdown-item">Payments</a>
+
+                <a href="#" th:href="@{/prices}" th:text="#{navigation.all-prices}" class="dropdown-item">Prices</a>
+                <a href="#" th:href="@{/discounts}" th:text="#{navigation.all-discounts}" class="dropdown-item">Discounts</a>
+
+                <a href="#" th:href="@{/brands}" th:text="#{navigation.all-brands}" class="dropdown-item">Brands</a>
+                <a href="#" th:href="@{/car-models}" th:text="#{navigation.all-carModels}" class="dropdown-item">Car
+                    models</a>
+                <a href="#" th:href="@{/vehicles}" th:text="#{navigation.all-vehicles}"
+                   class="dropdown-item">Vehicles</a>
+                <a href="#" th:href="@{/car-maintenances}" th:text="#{navigation.all-car-maintenances}"
+                   class="dropdown-item">Car maintenances</a>
+                <a href="#" th:href="@{/auth/register}" th:text="#{navigation.register}" class="dropdown-item">User
+                    registration</a>
+
+                <a href="#" th:href="@{/users}" th:text="#{navigation.all-users}" class="dropdown-item">Users</a>
+                <a href="#" th:href="@{/roles}" th:text="#{navigation.all-roles}" class="dropdown-item">Roles</a>
+            </div>
+        </div>
+    </div>
+    </div>
+</nav>
+</body>
+</html>
+<!-- Navbar End ---------------------------------->
+
+<!-- Spinner Start -->
+<div id="spinner"
+     class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<!-- Spinner End -->
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header mb-5 p-0" style="background-image: url('/img/carousel-bg-2.jpg');">
+    <div class="container-fluid page-header-inner py-5">
+        <div class="container text-center">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Register User</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center text-uppercase">
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/}">Home</a></li>
+                    <!--          <li class="breadcrumb-item"><a href="#">Vehicles</a></li>-->
+                    <li class="breadcrumb-item text-white active" aria-current="page">Register User</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<form action="#" th:action="@{/auth/register}" th:object="${register}" method="post" style="padding: 20px;">
+
+    <label th:text="#{user.label.first-name}">First Name</label>
+    <br/>
+    <input type="text" th:field="*{firstName}" style="margin-bottom: 10px;"/>
+    <label class="error" th:errors="*{firstName}">First name error placeholder</label>
+    <br/><br/>
+
+    <label th:text="#{user.label.last-name}">Last Name</label>
+    <br/>
+    <input type="text" th:field="*{lastName}" style="margin-bottom: 10px;"/>
+    <label class="error" th:errors="*{lastName}">Last name error placeholder</label>
+    <br/><br/>
+
+    <label th:text="#{user.label.email}">Email</label>
+    <br/>
+    <input type="text" th:field="*{email}" style="margin-bottom: 10px;"/>
+    <label class="error" th:errors="*{email}">Email error placeholder</label>
+    <br/><br/>
+
+    <label th:text="#{user.label.phoneNumber}">Phone number</label>
+    <br/>
+    <input type="text" th:field="*{phoneNumber}" style="margin-bottom: 10px;"/>
+    <label class="error" th:errors="*{phoneNumber}">Phone number error placeholder</label>
+    <br/><br/>
+
+    <label th:text="#{user.label.role}">Role</label>
+    <select th:field="*{roleDescription}" style="margin-bottom: 10px;">
+        <option value="">Select Role</option>
+        <option value="customer">customer</option>
+        <option value="admin">admin</option>
+    </select>
+    <br/>
+    <br/><br/>
+
+
+    <input type="submit" value="Register"/>
+</form>
+
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/lib/wow/wow.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/lib/waypoints/waypoints.min.js"></script>
+<script src="/lib/counterup/counterup.min.js"></script>
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/lib/tempusdominus/js/moment.min.js"></script>
+<script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="/js/main.js"></script>
+
+</body>
+</html>

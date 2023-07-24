@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicle Form</title>
+    <link href="../static/Styles.css" th:href="@{/Styles.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<form th:fragment="vehicle-form" action="#" th:action="@{__${requestURI}__}" th:object="${vehicleSaveRequest}"
+      method="post">
+    <label th:text="#{vehicle.label.plate}">Plate </label>
+    <br/>
+    <input type="text" th:field="*{plate}"/>
+    <label class="error" th:errors="*{plate}">Plate name error placeholder</label>
+    <br/><br/>
+
+    <label th:text="#{vehicle.label.vin}">VIN </label>
+    <br/>
+    <input type="text" th:field="*{vin}"/>
+    <label class="error" th:errors="*{vin}">VIN amount error placeholder</label>
+    <br/><br/>
+
+    <label th:text="#{vehicle.label.year}">Year of creation</label>
+    <br/>
+    <input type="text" th:field="*{yearOfCreation}"/>
+    <label class="error" th:errors="*{yearOfCreation}">Year of creation error placeholder</label>
+    <br/><br/>
+
+    <label th:text="#{vehicle.label.model-name}">Model name</label>
+    <br/>
+    <select th:field="*{carModelName}" id="dropDownList2">
+        <option value="0">select option</option>
+        <option th:each="carModel : ${carModels}" th:value="${carModel.carModelId}"
+                th:text="${carModel.carModelName}"></option>
+    </select>
+
+    <label class="error" th:errors="*{carModelName}">Email error placeholder</label>
+    <br/><br/>
+
+
+    <label th:text="#{vehicle.label.customer-email}">Customer-email</label>
+    <br/>
+    <select th:field="*{email}" id="dropDownList">
+        <option value="0">select option</option>
+        <option th:each="user : ${users}" th:value="${user.email}" th:text="${user.email}"></option>
+    </select>
+
+    <label class="error" th:errors="*{email}">Email error placeholder</label>
+    <br/><br/>
+
+    <input type="submit" value="Save"/>
+    <br/><br/>
+</form>
+
+
+</body>
+</html>

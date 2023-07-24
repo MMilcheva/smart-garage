@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Entity not found</title>
+  <link href="../static/Styles.css" th:href="@{/Styles.css}" rel="stylesheet"/>
+</head>
+<body>
+<h2 th:text="#{error.not-found}"></h2>
+<h3 class="error" th:text="${error}">Error placeholder</h3>
+</body>
+</html>

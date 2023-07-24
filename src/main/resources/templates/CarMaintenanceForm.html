@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Brand form</title>
+</head>
+<body>
+
+<form th:fragment="car-maintenance-form" action="#" th:action="@{__${requestURI}__}" th:object="${carMaintenanceSaveRequest}" method="post">
+  <label th:text="#{car-maintenance.label.carMaintenanceName}">Car Maintenance name</label>
+  <br/>
+  <input type="text" th:field="*{carMaintenanceName}"/>
+  <label class="error" th:errors="*{carMaintenanceName}">Car maintenance name error placeholder</label>
+  <br/><br/>
+
+  <label th:Boolean="#{car-maintenance.label.isArhived}">Archived</label>
+  <br/>
+  <input type="text" th:field="*{archived}"/>
+  <label class="error" th:errors="*{archived}">is archived error placeholder</label>
+  <br/><br/>
+
+  <input type="submit" value="Save"/>
+</form>
+
+</body>
+</html>

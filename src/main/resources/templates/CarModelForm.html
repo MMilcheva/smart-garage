@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Car model form</title>
+</head>
+<body>
+<h3>---------I am Model Form------------</h3>
+
+<form th:fragment="carModel-form" action="#" th:action="@{__${requestURI}__}" th:object="${carModelSaveRequest}" method="post">
+  <label th:text="#{carModel.label.carModelName}">Car model name</label>
+  <br/>
+  <input type="text" th:field="*{carModelName}"/>
+  <label class="error" th:errors="*{carModelName}">Car model name error placeholder</label>
+  <br/><br/>
+
+  <label th:text="#{brand.label.brandName}">Brand name</label>
+  <br/>
+  <select th:field="*{brandId}" id="dropDownList2">
+    <option value="0">select option</option>
+    <option th:each="brand : ${brands}" th:value="${brand.brandId}" th:text="${brand.brandName}"></option>
+  </select>
+
+  <input type="submit" value="Save"/>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order form</title>
+</head>
+<body>
+<form th:fragment="order-form" action="#" th:action="@{__${requestURI}__}" th:object="${orderSaveRequest}" method="post">
+
+    <label th:text="#{order.label.carMaintenanceName}">Car maintenance name</label>
+    <br/>
+    <select th:field="*{carMaintenanceName}" id="dropDownList">
+        <option value="0">select option</option>
+        <option th:each="option : ${carMaintenanceOptions}" th:value="${option.carMaintenanceName}" th:text="${option.carMaintenanceName}"></option>
+    </select>
+    <label class="error" th:errors="*{carMaintenanceName}">Car maintenance name error placeholder</label>
+    <br/><br/>
+
+    <label th:text="#{order.label.visitId}">Visit Id</label>
+    <br/>
+    <select th:field="*{visitId}" id="dropDownList2">
+        <option value="0">select option</option>
+        <option th:each="visit : ${visits}" th:value="${visit.visitId}" th:text="${visit.visitId}"></option>
+    </select>
+    <br/><br/>
+  <input type="submit" value="Save"/>
+    <br/><br/>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment form</title>
+</head>
+<body>
+
+<form th:fragment="payment-form" action="#" th:action="@{__${requestURI}__}" th:object="${paymentSaveRequest}"
+      method="post">
+    <br/>
+    <label th:text="#{payment.label.selectedCurrency}">Selected currency</label>
+    <br/>
+    <select th:field="*{selectedCurrency}" id="dropDownList">
+        <option value="0">select option</option>
+        <option th:each="currency : ${currencyCodes}"
+                th:value="${currency}"
+                th:text="${currency}">
+        </option>
+    </select>
+    <label class="error" th:errors="*{selectedCurrency}">SelectedCurrency currency error placeholder</label>
+    <br/><br/>
+    <label th:text="#{payment.label.visitId}">Visit Id</label>
+    <br/>
+    <select th:field="*{visitId}" id="dropDownList2">
+        <option value="0">select option</option>
+        <option th:each="visit : ${visits}" th:value="${visit.visitId}" th:text="${visit.visitId}"></option>
+    </select>
+    <label class="error" th:errors="*{visitId}">visitId error placeholder</label>
+    <br/><br/>
+    <input type="submit" value="Save"/>
+</form>
+
+</body>
+</html>

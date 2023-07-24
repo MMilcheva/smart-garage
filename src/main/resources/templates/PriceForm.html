@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>price form</title>
+</head>
+<body>
+
+<form th:fragment="price-form" action="#" th:action="@{__${requestURI}__}" th:object="${priceSaveRequest}"
+      method="post">
+
+    <label th:text="#{price.label.carMaintenanceName}">Car maintenance name</label>
+    <br/>
+    <select th:field="*{carMaintenanceId}" id="dropDownList">
+        <option value="0">select option</option>
+        <option th:each="carMaintenance : ${carMaintenanceOptions}" th:value="${carMaintenance.carMaintenanceId}"
+                th:text="${carMaintenance.carMaintenanceName}"></option>
+    </select>
+
+    <label class="error" th:errors="*{carMaintenanceId}">Car maintenance name error placeholder</label>
+    <br/><br/>
+
+    <label th:text="#{price.label.amount}">Amount</label>
+    <br/>
+    <input type="text" th:field="*{amount}"/>
+    <label class="error" th:errors="*{amount}">amount error placeholder</label>
+    <br/><br/>
+
+    <label th:text="#{price.label.validFrom}">validFrom</label>
+    <br/>
+    <input type="date" th:field="*{validFrom}"/>
+    <label class="error" th:errors="*{validFrom}">validFrom error placeholder</label>
+    <br/><br/>
+
+    <label th:text="#{price.label.validTo}">valid To</label>
+    <br/>
+    <input type="date" th:field="*{validTo}"/>
+    <label class="error" th:errors="*{validTo}">valid To error placeholder</label>
+    <br/><br/>
+
+    <input type="submit" value="Save"/>
+    <br/>
+</form>
+
+</body>
+</html>

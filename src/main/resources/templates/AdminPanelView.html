@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+</head>
+<body>
+<ul>
+  <li><h3><a href="/" th:text="#{navigation.home}">Home</a></h3></li>
+  <li><h3><a href="#" th:href="@{/users}" th:text="#{navigation.all-users}">All Users</a></h3></li>
+  <li><h3><a href="#" th:href="@{/car-maintenances}" th:text="#{navigation.all-car-maintenances}">All Car Maintenances</a></h3></li>
+  <li><h3><a href="#" th:href="@{/vehicles}" th:text="#{navigation.all-vehicles}">All Vehicles</a></h3></li>
+  <li><h3><a href="#" th:href="@{/visits}" th:text="#{navigation.all-visits}">All Visits</a></h3></li>
+  <li><h3><a href="#" th:href="@{/auth/register}" th:text="#{navigation.register}" >Register user</a></h3></li>
+  <li><h3><a th:href="@{/visits/new}" th:text="#{navigation.brand-new-visit}" >Create Visit</a></h3></li>
+  <li><h3><a th:href="@{/auth/logout}" href="#">Logout</a></h3></li>
+</ul>
+
+<h2 th:text="#{admin.welcome}">Welcome Admin (design)!</h2>
+<h2 th:text="${session.currentUser}"></h2>
+<h2 th:if="${session.currentUser != null}" th:text="${session.currentUser}"></h2>
+</body>
+</html>

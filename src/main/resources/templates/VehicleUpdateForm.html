@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:import="org.thymeleaf.util.StringUtils">
+<head>
+  <meta charset="UTF-8">
+  <title>Updated Vehicle</title>
+  <link href="../static/Styles.css" th:href="@{/Styles.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<form th:fragment="vehicle-update-form" action="#" th:action="@{__${requestURI}__}" th:object="${vehicleSaveRequest}" method="post">
+
+  <br/>
+  <br/><br/>
+
+  <label th:text="#{vehicle.label.plate}">License Plate</label>
+  <input type="text" th:field="*{plate}"/>
+  <label class="error" th:errors="*{plate}">License Plate error placeholder</label>
+  <br/>
+  <br/><br/>
+    <label for="archived-select">Archived:</label>
+  <select id="archived-select" th:field="*{archived}">
+    <option value="true">Yes</option>
+    <option value="false">No</option>
+  </select>
+
+  <br/>
+  <br/><br/>
+
+  <input type="submit" value="Save"/>
+</form>
+
+</body>
+</html>
