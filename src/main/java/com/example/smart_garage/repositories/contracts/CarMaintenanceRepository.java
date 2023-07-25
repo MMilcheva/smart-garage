@@ -15,7 +15,7 @@ public interface CarMaintenanceRepository extends BaseCRUDRepository<CarMaintena
 
     List<CarMaintenance> getAllCarMaintenanceFilter(CarMaintenanceFilterOptions carMaintenanceFilterOptions);
 
-    List<CarMaintenance> filter(Optional<String> carMaintenanceIdName,
+    List<CarMaintenance> filter(Optional<String> carMaintenanceName,
                                 Optional<String> username,
                                 Optional<Boolean> isArchived,
                                 Optional<String> sortBy,

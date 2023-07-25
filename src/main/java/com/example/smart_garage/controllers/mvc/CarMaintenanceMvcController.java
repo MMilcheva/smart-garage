@@ -57,7 +57,7 @@ public class CarMaintenanceMvcController {
     @GetMapping
     public String filterAllCarMaintenances(@ModelAttribute("carMaintenanceFilterOptions") CarMaintenanceFilterDto carMaintenanceFilterDto,
                                            Model model) {
-//
+
         String sortBy = carMaintenanceFilterDto.getSortBy();
         if (sortBy == null || sortBy.isEmpty()) {
             sortBy = "carMaintenanceName";

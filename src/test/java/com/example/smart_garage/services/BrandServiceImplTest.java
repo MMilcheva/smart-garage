@@ -2,7 +2,6 @@ package com.example.smart_garage.services;
 
 import com.example.smart_garage.models.Brand;
 import com.example.smart_garage.repositories.contracts.BrandRepository;
-import com.example.smart_garage.repositories.contracts.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,16 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.smart_garage.Helpers.*;
+import static com.example.smart_garage.Helpers.createMockBrand;
+import static com.example.smart_garage.Helpers.createMockUserAdmin;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class BrandServiceImplTest {
     @Mock
     private BrandRepository brandRepository;
-
     @InjectMocks
     private BrandServiceImpl brandService;
 
@@ -32,7 +31,7 @@ class BrandServiceImplTest {
 
         Brand brand = createMockBrand();
 
-        Mockito.when(brandRepository.getById(brand.getBrandId())).thenReturn(brand);
+        when(brandRepository.getById(brand.getBrandId())).thenReturn(brand);
 
         Optional<Brand> result = Optional.ofNullable(brandService.getBrandById(brand.getBrandId()));
 
@@ -45,7 +44,7 @@ class BrandServiceImplTest {
     void getBrandByName_Should_ReturnObject() {
         Brand brand = createMockBrand();
 
-        Mockito.when(brandRepository.getByField("brandName", brand.getBrandName())).thenReturn(brand);
+        when(brandRepository.getByField("brandName", brand.getBrandName())).thenReturn(brand);
 
         Optional<Brand> result = Optional.ofNullable(brandService.getBrandByName(brand.getBrandName()));
 
@@ -62,7 +61,7 @@ class BrandServiceImplTest {
         brandList.add(createMockBrand());
 
         Optional<String> search = Optional.empty();
-        Mockito.when(brandRepository.getAllBrands(search)).thenReturn(brandList);
+        when(brandRepository.getAllBrands(search)).thenReturn(brandList);
         List<Brand> result = brandService.getAllBrands(search);
 
         assertEquals(brandList.size(), result.size());
@@ -79,19 +78,11 @@ class BrandServiceImplTest {
         Mockito.verify(brandRepository).delete(brand.getBrandId());
     }
 
-    @Test
+  @Test
     void createBrand_Should_ReturnCreatedObject() {
         Brand brand = createMockBrand();
 
         brandService.createBrand(brand);
         Mockito.verify(brandRepository).create(brand);
-    }
-
-    @Test
-    void checkIfBrandExists() {
-    }
-
-    @Test
-    void updateBrand() {
     }
 }

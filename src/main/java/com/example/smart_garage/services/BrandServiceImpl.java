@@ -85,7 +85,7 @@ public class BrandServiceImpl implements BrandService {
         return brand;
     }
 
-    private void checkModifyPermissions(User user) {
+    public void checkModifyPermissions(User user) {
         String str = "admin";
         if (!(user.getRole().getRoleName().equals(str))) {
             throw new AuthorizationException(MODIFY_BRAND_ERROR_MESSAGE);

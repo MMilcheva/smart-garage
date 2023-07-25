@@ -25,6 +25,9 @@ public class CarMaintenanceFilterOptions {
         this.sortOrder = Optional.ofNullable(sortOrder);
     }
 
+    public CarMaintenanceFilterOptions() {
+    }
+
     public Optional<String> getCarMaintenanceName() {
         return carMaintenanceName;
     }

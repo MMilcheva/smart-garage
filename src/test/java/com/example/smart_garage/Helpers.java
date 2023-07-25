@@ -1,10 +1,8 @@
 package com.example.smart_garage;
 
-import com.example.smart_garage.models.Brand;
-import com.example.smart_garage.models.Role;
-import com.example.smart_garage.models.User;
+import com.example.smart_garage.models.*;
 
-import java.util.UUID;
+import java.util.Optional;
 
 public class Helpers {
 
@@ -27,6 +25,7 @@ public class Helpers {
         mockUser.setRole(new Role(1L, "user"));
         return mockUser;
     }
+
     public static User createMockUserAdmin() {
         var mockUser = new User();
         mockUser.setUserId(1L);
@@ -36,7 +35,27 @@ public class Helpers {
         mockUser.setFirstName("MockAdminFirstName");
         mockUser.setPhoneNumber("0890123456");
         mockUser.setEmail("mockAdmin@user.com");
-        mockUser.setRole(new Role(1L, "admin"));
+        mockUser.setRole(new Role(2L, "admin"));
         return mockUser;
+    }
+
+    public static CarMaintenance createMockCarMaintenance() {
+        CarMaintenance carMaintenance = new CarMaintenance();
+        carMaintenance.setCarMaintenanceId(1L);
+        carMaintenance.setCarMaintenanceName("Change oil");
+        return carMaintenance;
+    }
+
+    public static CarMaintenance createAnotherMockCarMaintenance() {
+        CarMaintenance carMaintenance = new CarMaintenance();
+        carMaintenance.setCarMaintenanceId(1L);
+        carMaintenance.setCarMaintenanceName("Change filters");
+        return carMaintenance;
+    }
+
+    public static CarMaintenanceFilterOptions createMockCarMaintenanceFilterOptions() {
+        CarMaintenanceFilterOptions carMaintenanceFilterOptions = new CarMaintenanceFilterOptions();
+        carMaintenanceFilterOptions.setCarMaintenanceName(Optional.of("name"));
+        return carMaintenanceFilterOptions;
     }
 }
