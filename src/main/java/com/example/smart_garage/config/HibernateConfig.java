@@ -16,13 +16,14 @@ import java.util.Properties;
 @PropertySource("classpath:application.properties")
 public class HibernateConfig {
 
-    private final String dbUrl, dbUsername, dbPassword;
+    private final String dbUrl, dbUsername, dbPassword, dbClassName;
 
     @Autowired
     public HibernateConfig(Environment env) {
         dbUrl = env.getProperty("database.url");
         dbUsername = env.getProperty("database.username");
         dbPassword = env.getProperty("database.password");
+        dbClassName = env.getProperty("spring.datasource.driver-class-name");
     }
 
     @Bean (name = "entityManagerFactory")
